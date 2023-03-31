@@ -1,4 +1,5 @@
 import argparse
+import pickle
 import pandas as pd
 
 from sklearn.preprocessing import LabelEncoder
@@ -16,5 +17,5 @@ y_label = data.Activity.values.astype(object)
 encoder = LabelEncoder()
 y = encoder.fit_transform(y_label)
 
-y.to_csv(args.output_data)
-
+with open(args.output_data, 'wb') as f:
+    pickle.dump(y, f)

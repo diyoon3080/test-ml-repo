@@ -1,4 +1,5 @@
 import argparse
+import pickle
 import pandas as pd
 
 from sklearn.preprocessing import StandardScaler
@@ -16,4 +17,5 @@ X = pd.DataFrame(data.drop(['Activity', 'subject'], axis=1))
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
-X_scaled.to_csv(args.output_data)
+with open(args.output_data, 'wb') as f:
+    pickle.dump(X_scaled, f)
